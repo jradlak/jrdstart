@@ -1,5 +1,6 @@
-package com.jrd.jrdstart;
+package com.jrd.jrdstart.config;
 
+import com.jrd.jrdstart.domain.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

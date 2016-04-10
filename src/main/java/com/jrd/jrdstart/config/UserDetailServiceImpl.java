@@ -1,5 +1,6 @@
-package com.jrd.jrdstart;
+package com.jrd.jrdstart.config;
 
+import com.jrd.jrdstart.domain.Account;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

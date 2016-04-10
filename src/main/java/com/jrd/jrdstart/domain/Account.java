@@ -1,4 +1,4 @@
-package com.jrd.jrdstart;
+package com.jrd.jrdstart.domain;
 
 /**
  * Created by jakub on 09.04.16.
