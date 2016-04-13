@@ -1,6 +1,9 @@
-security:
-  user:
-    password: password
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jrdstart
+    username: postgres
+    password: postgres
+
 logging:
   level:
     org.springframework.security: DEBUG

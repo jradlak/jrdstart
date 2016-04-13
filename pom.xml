@@ -15,6 +15,7 @@
         <wro4j.version>1.7.6</wro4j.version>
         <java.version>1.8</java.version>
         <javax.inject.version>1</javax.inject.version>
+        <postgresql.version>9.4-1203-jdbc42</postgresql.version>
     </properties>
 
 	<parent>
@@ -25,6 +26,8 @@
 	</parent>
 
 	<dependencies>
+
+        <!-- core -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -37,16 +40,26 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-data</artifactId>
 		</dependency>
+
+        <!-- data storage -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>${javax.inject.version}</version>
         </dependency>
+
+        <!-- test scope dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
