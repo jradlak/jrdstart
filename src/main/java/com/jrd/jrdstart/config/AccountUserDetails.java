@@ -1,6 +1,6 @@
 package com.jrd.jrdstart.config;
 
-import com.jrd.jrdstart.domain.Account;
+import com.jrd.jrdstart.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,10 +11,10 @@ import java.util.Collection;
  * Created by jakub on 09.04.16.
  */
 public class AccountUserDetails implements UserDetails {
-    private final Account account;
+    private final User user;
 
-    public AccountUserDetails(Account account) {
-        this.account = account;
+    public AccountUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
@@ -33,12 +33,12 @@ public class AccountUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return account.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return account.getName();
+        return user.getLogin();
     }
 
     @Override
