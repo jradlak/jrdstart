@@ -1,5 +1,5 @@
 {
-    "name": "DnDMaster",
+    "name": "jrdstart",
     "version": "0.0.0",
     "appPath": "src/main/resources/static",
     "testPath": "src/test/resources/static",
@@ -9,20 +9,10 @@
         "angular-loading-bar": "0.8.0",
         "angular-resource": "1.4.8",
         "angular-sanitize": "1.4.8",
-        "angular-ui-router": "0.2.15",
+        "angular-route": "1.2.6",
         "bootstrap": "3.3.5",
         "jquery": "2.1.4",
-        "json3": "3.3.2",
-
-    },
-    "overrides": {
-        "bootstrap": {
-            "main": [
-                "dist/js/bootstrap.js",
-                "dist/css/bootstrap.css",
-                "less/bootstrap.less"
-            ]
-        }
+        "json3": "3.3.2"
     },
     "resolutions": {
         "angular": "1.4.8",
