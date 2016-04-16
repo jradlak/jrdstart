@@ -46,10 +46,12 @@
                   file="config/liquibase/users.csv"
                   separator=";"
                   tableName="user">
+            <!--
             <column name="activated" type="boolean"/>
-            <column name="created_date" type="timestamp"/>
+            <column name="created_date" type="timestamp"/> -->
         </loadData>
-        <dropDefaultValue tableName="user" columnName="created_date" columnDataType="datetime"/>
+        <!--
+        <dropDefaultValue tableName="user" columnName="created_date" columnDataType="datetime"/> -->
 
     </changeSet>
     
