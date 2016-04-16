@@ -3,6 +3,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/jrdstart
     username: postgres
     password: postgres
+  jpa:
+    show-sql: true
 
 logging:
   level:

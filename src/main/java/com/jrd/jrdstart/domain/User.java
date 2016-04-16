@@ -12,11 +12,12 @@ import javax.validation.constraints.Size;
  * Created by jakub on 09.04.16.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "jrd_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @NotNull
