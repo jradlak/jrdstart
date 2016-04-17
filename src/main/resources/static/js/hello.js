@@ -23,9 +23,10 @@ angular.module('jrdstart', [ 'ngRoute' ]).config(function($routeProvider, $httpP
 			};
 
 			var authenticate = function(credentials, callback) {
-
                 if (credentials) {
-                    $http.post("api/authentication", "username=" + credentials.username + "&password=" + credentials.password, {
+                    $http.post("api/authentication", "username="
+                    + encodeURIComponent(credentials.username) + "&password="
+                    + encodeURIComponent(credentials.password), {
                             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                         }).then(function(data) {
                             $rootScope.authenticated = true;
