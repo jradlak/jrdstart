@@ -30,9 +30,11 @@ angular.module('jrdstart', [ 'ngRoute' ]).config(function($routeProvider, $httpP
                             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                         }).then(function(data) {
                             $rootScope.authenticated = true;
+                            $rootScope.error = false;
                             callback && callback($rootScope.authenticated);
                         }, function(data) {
                             $rootScope.authenticated = false;
+                            $rootScope.error = true;
                             callback && callback(false);
                         });
                 }
