@@ -29,7 +29,24 @@
                 <constraints unique="true"/>
             </column>
         </createTable>
-        
+
+        <createTable tableName="jrd_authority">
+            <column name="name" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user_authority">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="user_authority"/>
+
         <createIndex indexName="idx_jrd_user_login"
             tableName="jrd_user"
             unique="true">
@@ -42,6 +59,18 @@
             <column name="email" type="varchar(100)"/>
         </createIndex>
 
+        <addForeignKeyConstraint baseColumnNames="authority_name"
+                                 baseTableName="user_authority"
+                                 constraintName="fk_authority_name"
+                                 referencedColumnNames="name"
+                                 referencedTableName="jrd_authority"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_authority"
+                                 constraintName="fk_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jrd_user"/>
+
         <loadData encoding="UTF-8"
                   file="config/liquibase/users.csv"
                   separator=";"
@@ -52,6 +81,16 @@
         </loadData>
         <!--
         <dropDefaultValue tableName="user" columnName="created_date" columnDataType="datetime"/> -->
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/authorities.csv"
+                  separator=";"
+                  tableName="jrd_authority"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/users_authorities.csv"
+                  separator=";"
+                  tableName="user_authority"/>
 
     </changeSet>
     

@@ -9,24 +9,24 @@ import com.jrd.jrdstart.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by jakub on 09.04.16.
  */
 @Component("userDetailsService")
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final Logger log = LoggerFactory.getLogger(UserDetailServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @Inject
     private UserRepository userRepository;
@@ -38,19 +38,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
         String lowercaseLogin = login.toLowerCase();
         Optional<User> userFromDatabase = userRepository.findOneByLogin(lowercaseLogin);
 
-
         return userFromDatabase.map(user -> {
-            //if (!user.getActivated()) {
-            //    throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
-            //}
-            List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>(
-                    Arrays.asList(
-                            new GrantedAuthority() {
-                                @Override
-                                public String getAuthority() {
-                                    return "USER";
-                                }
-                            }));
+            List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
+                    .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                    .collect(Collectors.toList());
 
             return new org.springframework.security.core.userdetails.User(lowercaseLogin,
                     user.getPassword(),
