@@ -71,7 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .failureHandler(ajaxAuthenticationFailureHandler)
                 .permitAll()
                 .and().authorizeRequests()
-                //.antMatchers("/**").permitAll().anyRequest().authenticated()
+                .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/**", "/resource").authenticated()
                 .and().csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and()

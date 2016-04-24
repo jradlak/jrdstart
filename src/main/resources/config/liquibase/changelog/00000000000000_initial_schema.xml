@@ -75,12 +75,7 @@
                   file="config/liquibase/users.csv"
                   separator=";"
                   tableName="jrd_user">
-            <!--
-            <column name="activated" type="boolean"/>
-            <column name="created_date" type="timestamp"/> -->
         </loadData>
-        <!--
-        <dropDefaultValue tableName="user" columnName="created_date" columnDataType="datetime"/> -->
 
         <loadData encoding="UTF-8"
                   file="config/liquibase/authorities.csv"
@@ -93,5 +88,4 @@
                   tableName="user_authority"/>
 
     </changeSet>
-    
 </databaseChangeLog>

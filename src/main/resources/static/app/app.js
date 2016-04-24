@@ -9,7 +9,11 @@ angular.module('jrdstart', [ 'ngRoute' ]).config(function($routeProvider, $httpP
 		templateUrl : '/app/login/login.html',
 		controller : 'login',
 		controllerAs: 'controller'
-	}).otherwise('/');
+	}).when('/register', {
+    	templateUrl : '/app/register/register.html',
+    	controller : 'register',
+    	controllerAs: 'controller'
+    }).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 });
