@@ -1,21 +1,10 @@
-angular.module('jrdstart', [ 'ngRoute' ]).config(function($routeProvider, $httpProvider) {
+'use strict';
 
-	$routeProvider.when('/', {
-		templateUrl : 'home.html',
-		controller : 'home',
-		controllerAs: 'controller'
-	}).when('/login', {
-		templateUrl : 'login.html',
-		controller : 'navigation',
-		controllerAs: 'controller'
-	}).otherwise('/');
-
-	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-}).controller('navigation',
+angular.module('jrdstart')
+    .controller('login',
 
 		function($rootScope, $http, $location, $route) {
-			
+
 			var self = this;
 
 			self.tab = function(route) {
@@ -66,9 +55,4 @@ angular.module('jrdstart', [ 'ngRoute' ]).config(function($routeProvider, $httpP
 				});
 			}
 
-		}).controller('home', function($http) {
-	var self = this;
-	$http.get('/resource/').success(function(data) {
-		self.greeting = data;
-	})
-});
+		})
