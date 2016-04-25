@@ -1,6 +1,25 @@
-<div class="alert alert-danger" ng-show="error">
-    There was a problem with registering in. Please try again.
-</div>
+
+    <div class="alert alert-success" ng-show="success">
+        <strong>Registration saved!</strong> Please you can now log in.
+    </div>
+
+    <div class="alert alert-danger" ng-show="error">
+        <strong>Registration failed!</strong> Please try again later.
+    </div>
+
+    <div class="alert alert-danger" ng-show="errorUserExists">
+        <strong>Login name already registered!</strong> Please choose another one.
+    </div>
+
+    <div class="alert alert-danger" ng-show="errorEmailExists">
+        <strong>E-mail is already in use!</strong> Please choose another one.
+    </div>
+
+    <div class="alert alert-danger" ng-show="doNotMatch">
+        The password and its confirmation do not match!
+    </div>
+
+
 <form role="form" ng-submit="register()">
     <div class="form-group">
         <label for="username">Username:</label>
