@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('jrdstart', [ 'ngRoute' ]).config(function($routeProvider, $httpProvider) {
+angular.module('jrdstart', [ 'ngRoute', 'ngResource' ]).config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/', {
-		templateUrl : '/app/home/home.html',
+		templateUrl : '/app/components/home/home.html',
 		controller : 'home',
 		controllerAs: 'controller'
 	}).when('/login', {
-		templateUrl : '/app/login/login.html',
+		templateUrl : '/app/components/login/login.html',
 		controller : 'login',
 		controllerAs: 'controller'
 	}).when('/register', {
-    	templateUrl : '/app/register/register.html',
+    	templateUrl : '/app/components/register/register.html',
     	controller : 'register',
     	controllerAs: 'controller'
     }).otherwise('/');
