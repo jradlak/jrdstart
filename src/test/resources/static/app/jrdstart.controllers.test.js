@@ -22,12 +22,8 @@ describe("jrdstart", function() {
 			$http.get('')
 			$httpBackend.flush();
 		});
-
 	});
 
-});
-
-/*
 	describe("Home Controller", function() {
 
 		it("says Hello Test when controller loads", function() {
@@ -42,15 +38,15 @@ describe("jrdstart", function() {
 
 	});
 
-	describe("Navigation Controller", function() {
 
+	describe("Login Controller", function() {
 		var controller;
 		var $rootScope = {};
 
 		beforeEach(inject(function($injector) {
-			$httpBackend.expectGET('user').respond(401);
+			$httpBackend.expectGET('api/authentication').respond(401);
 			$httpBackend.expectGET('home.html').respond(200);
-			controller = $controller('navigation', {
+			controller = $controller('login', {
 				$rootScope : $rootScope
 			});
 			$httpBackend.flush();
@@ -63,6 +59,7 @@ describe("jrdstart", function() {
 
 		describe("Login", function() {
 
+            /*
 			it("authenticates successfully with correct credentials", function() {
 				$httpBackend.expectGET('user', function(headers) {
 					expect(headers.authorization).toBeDefined();
@@ -78,9 +75,10 @@ describe("jrdstart", function() {
 				$httpBackend.flush();
 				expect($rootScope.authenticated).toEqual(true);
 			});
+            */
 
 			it("does not authenticate successfully if credentials are bad", function() {
-				$httpBackend.expectGET('user', function(headers) {
+				$httpBackend.expectGET('api/authentication', function(headers) {
 					expect(headers.authorization).toBeDefined();
 					return true;
 				}).respond(401);
@@ -96,6 +94,7 @@ describe("jrdstart", function() {
 
 		});
 
+        /*
 		describe("Logout", function() {
 
 			it("successful logout", function() {
@@ -113,6 +112,7 @@ describe("jrdstart", function() {
 			});
 
 		});
-
+       */
 	});
-    */
+
+});
