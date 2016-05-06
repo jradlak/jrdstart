@@ -1,6 +1,6 @@
-describe("App", function() {
+describe("jrdstart", function() {
 
-	beforeEach(module('hello'));
+	beforeEach(module('jrdstart'));
 	var $httpBackend, $controller, $http;
 	beforeEach(inject(function($injector) {
 		$httpBackend = $injector.get('$httpBackend');
@@ -25,6 +25,9 @@ describe("App", function() {
 
 	});
 
+});
+
+/*
 	describe("Home Controller", function() {
 
 		it("says Hello Test when controller loads", function() {
@@ -112,5 +115,4 @@ describe("App", function() {
 		});
 
 	});
-
-})
+    */
