@@ -18,7 +18,7 @@ angular.module('jrdstart')
                     $scope.errorEmailExists = null;
 
                     Auth.createAccount($scope.registerAccount).then(function () {
-                        console.log('login success');
+                        console.log('create account success');
                         $scope.success = 'OK';
                     }).catch(function (response) {
                         $scope.success = null;
