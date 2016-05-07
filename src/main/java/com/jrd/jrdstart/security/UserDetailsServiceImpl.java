@@ -28,8 +28,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
-    @Inject
     private UserRepository userRepository;
+
+    @Inject
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
