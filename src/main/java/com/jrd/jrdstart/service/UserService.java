@@ -22,14 +22,26 @@ import java.util.Set;
 public class UserService {
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
-    @Inject
     private PasswordEncoder passwordEncoder;
 
-    @Inject
     private UserRepository userRepository;
 
-    @Inject
     private AuthorityRepository authorityRepository;
+
+    @Inject
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Inject
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Inject
+    public void setAuthorityRepository(AuthorityRepository authorityRepository) {
+        this.authorityRepository = authorityRepository;
+    }
 
     public User createUserInformation(String login, String password, String firstName, String lastName, String email) {
         User newUser = new User();
