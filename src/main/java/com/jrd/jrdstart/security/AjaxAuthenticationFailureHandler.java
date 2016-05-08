@@ -1,4 +1,4 @@
-package com.jrd.jrdstart.config;
+package com.jrd.jrdstart.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;

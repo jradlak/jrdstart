@@ -49,10 +49,9 @@ angular.module('jrdstart')
 			};
 
 			self.logout = function() {
-				$http.post('logout', {}).finally(function() {
+				$http.post('api/logout', {}).finally(function() {
 					$rootScope.authenticated = false;
 					$location.path("/");
 				});
 			}
-
 		})

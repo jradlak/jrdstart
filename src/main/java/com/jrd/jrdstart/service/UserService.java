@@ -50,6 +50,8 @@ public class UserService {
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(login);
         newUser.setPassword(encryptedPassword);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
         newUser.setEmail(email);
         authorities.add(authority);
         newUser.setAuthorities(authorities);

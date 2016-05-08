@@ -41,7 +41,8 @@ public class UserDTO {
     public UserDTO() {}
 
     public UserDTO(User user) {
-        this(user.getLogin(), user.getPassword(), "", "", user.getEmail(),
+        this(user.getLogin(), user.getPassword(), user.getFirstName(),
+                user.getLastName(), user.getEmail(),
                 user.getAuthorities().stream().map(Authority::getName)
                         .collect(Collectors.toSet()));
     }

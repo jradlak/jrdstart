@@ -1,5 +1,8 @@
 package com.jrd.jrdstart.config;
 
+import com.jrd.jrdstart.security.AjaxAuthenticationFailureHandler;
+import com.jrd.jrdstart.security.AjaxAuthenticationSuccessHandler;
+import com.jrd.jrdstart.security.AjaxLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +21,7 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -38,6 +42,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+
+    @Inject
+    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -63,19 +70,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(entryPoint)
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/api/authentication")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .successHandler(ajaxAuthenticationSuccessHandler)
-                .failureHandler(ajaxAuthenticationFailureHandler)
-                .permitAll()
-                .and().authorizeRequests()
-                .antMatchers("/api/register").permitAll()
-                .antMatchers("/api/**", "/resource").authenticated()
-                .and().csrf()
-                .csrfTokenRepository(csrfTokenRepository()).and()
-                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+                    .formLogin()
+                    .loginProcessingUrl("/api/authentication")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .successHandler(ajaxAuthenticationSuccessHandler)
+                    .failureHandler(ajaxAuthenticationFailureHandler)
+                    .permitAll()
+                .and()
+                    .logout()
+                    .logoutUrl("/api/logout")
+                    .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+                    .deleteCookies("JSESSIONID", "XSRF-TOKEN")
+                    .permitAll()
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/api/register").permitAll()
+                    .antMatchers("/api/**", "/resource").authenticated()
+                .and()
+                    .csrf()
+                    .csrfTokenRepository(csrfTokenRepository()).and()
+                    .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
     }
 
 
