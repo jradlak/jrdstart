@@ -3,8 +3,7 @@
 angular.module('jrdstart')
     .controller('login',
 
-		function($rootScope, $http, $location, $route) {
-
+		function($rootScope, $http, $location, $route, Auth) {
 			var self = this;
 
 			self.tab = function(route) {
@@ -13,19 +12,15 @@ angular.module('jrdstart')
 
 			var authenticate = function(credentials, callback) {
                 if (credentials) {
-                    $http.post("api/authentication", "username="
-                    + encodeURIComponent(credentials.username) + "&password="
-                    + encodeURIComponent(credentials.password), {
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                        }).then(function(data) {
-                            $rootScope.authenticated = true;
-                            $rootScope.error = false;
-                            callback && callback($rootScope.authenticated);
-                        }, function(data) {
-                            $rootScope.authenticated = false;
-                            $rootScope.error = true;
-                            callback && callback(false);
-                        });
+                    Auth.login(credentials).then(function (data) {
+                        $rootScope.authenticated = true;
+                        $rootScope.error = false;
+                        callback && callback($rootScope.authenticated);
+                    }).catch(function (err) {
+                        $rootScope.authenticated = false;
+                        $rootScope.error = true;
+                        callback && callback(false);
+                    });
                 }
 			}
 

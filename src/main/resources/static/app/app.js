@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jrdstart', [ 'ngRoute', 'ngResource' ]).config(function($routeProvider, $httpProvider) {
+angular.module('jrdstart', [ 'LocalStorageModule', 'ngRoute', 'ngResource' ]).config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/', {
 		templateUrl : '/app/components/home/home.html',
 		controller : 'home',
@@ -16,4 +16,6 @@ angular.module('jrdstart', [ 'ngRoute', 'ngResource' ]).config(function($routePr
     }).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+	$httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';
+    $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
 });
