@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jrdstart')
-    .controller('login',
+    .controller('LoginController',
 
 		function($rootScope, $http, $location, $route, Auth) {
 			var self = this;

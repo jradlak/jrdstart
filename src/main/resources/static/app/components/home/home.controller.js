@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jrdstart')
-    .controller('home', function($http) {
+    .controller('HomeController', function($http) {
         var self = this;
         $http.get('/resource/').success(function(data) {
             self.greeting = data;

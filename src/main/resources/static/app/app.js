@@ -1,9 +1,16 @@
 'use strict';
 
-angular.module('jrdstart', [ 'LocalStorageModule', 'ngRoute', 'ngResource' ])
-.run
+angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
+.run(function($rootScope, $state, Auth) {
 
-.config(function($routeProvider, $httpProvider) {
+    $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+        console.log('state changed to state');
+        console.log(toState);
+    });
+})
+.config(function($stateProvider, $httpProvider) {
+
+    /*
     $routeProvider.when('/', {
 		templateUrl : '/app/components/home/home.html',
 		controller : 'home',
@@ -17,6 +24,7 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ngRoute', 'ngResource' ])
     	controller : 'register',
     	controllerAs: 'controller'
     }).otherwise('/');
+    */
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	$httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jrdstart')
-    .controller('register',
+    .controller('RegisterController',
         function($scope, Auth) {
             $scope.doNotMatch = null;
             $scope.errorUserExists = null;
