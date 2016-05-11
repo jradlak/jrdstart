@@ -5,7 +5,7 @@ angular.module('jrdstart')
         return {
             login: function(credentials) {
                  var data = 'username=' + encodeURIComponent(credentials.username) +
-                     'password=' + encodeURIComponent(credentials.password) + '&submit=Login';
+                     '&password=' + encodeURIComponent(credentials.password);
                  return $http.post('api/authentication', data, {
                      headers: {
                          'Content-Type': 'application/x-www-form-urlencoded'
