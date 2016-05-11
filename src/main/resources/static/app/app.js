@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('jrdstart', [ 'LocalStorageModule', 'ngRoute', 'ngResource' ]).config(function($routeProvider, $httpProvider) {
+angular.module('jrdstart', [ 'LocalStorageModule', 'ngRoute', 'ngResource' ])
+.run
+
+.config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/', {
 		templateUrl : '/app/components/home/home.html',
 		controller : 'home',

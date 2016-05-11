@@ -4,6 +4,7 @@ import com.jrd.jrdstart.domain.Authority;
 import com.jrd.jrdstart.domain.User;
 import com.jrd.jrdstart.repository.AuthorityRepository;
 import com.jrd.jrdstart.repository.UserRepository;
+import com.jrd.jrdstart.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -41,6 +42,13 @@ public class UserService {
     @Inject
     public void setAuthorityRepository(AuthorityRepository authorityRepository) {
         this.authorityRepository = authorityRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public User getUserWithAuthorities() {
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get();
+        user.getAuthorities().size();
+        return user;
     }
 
     public User createUserInformation(String login, String password, String firstName, String lastName, String email) {
