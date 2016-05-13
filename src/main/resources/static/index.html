@@ -14,13 +14,20 @@
 <body ng-app="jrdstart" ng-cloak class="ng-cloak">
 	<div ng-controller="LoginController as nav" class="container">
 		<ul class="nav nav-pills" role="tablist">
-            <li ng-class="{active: $state.includes('home')}"><a ui-sref="/">home</a></li>
-			<li ng-show="!authenticated" ng-class="{active: $state.includes('register')}"><a ui-sref="register">register</a></li>
-			<li ng-show="!authenticated" ng-class="{active: $state.includes('login')}"><a ui-sref="login">login</a></li>
+            <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">home</a></li>
+			<li ng-class="{active: $state.includes('register')}" ng-show="!authenticated"><a ui-sref="register">register</a></li>
+			<li ng-class="{active: $state.includes('login')}" ng-show="!authenticated"><a ui-sref="login">login</a></li>
 			<li ng-show="authenticated"><a href="" ng-click="nav.logout()">logout</a></li>
 		</ul>
 	</div>
-	<div ng-view class="container"></div>
+
+    <div class="container">
+        <div class="well" ui-view="content"></div>
+
+        <div class="footer">
+            <p>This is your footer</p>
+        </div>
+    </div>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>

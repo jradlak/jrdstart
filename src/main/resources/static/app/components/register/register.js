@@ -3,12 +3,12 @@
 angular.module('jrdstart')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('RegisterController', {
+            .state('register', {
                 url: 'register',
                 views: {
                     'content@': {
                         templateUrl: '/app/components/register/register.html',
-                        controller: 'LoginController'
+                        controller: 'RegisterController'
                     }
                 }
             });
