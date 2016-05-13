@@ -1,14 +1,7 @@
 'use strict';
-
 angular.module('jrdstart')
     .controller('LoginController',
-
-		function($rootScope, $http, $location, $route, Auth) {
-			var self = this;
-
-			self.tab = function(route) {
-				return $route.current && route === $route.current.controller;
-			};
+		function($rootScope, $scope, $http, $location, Auth) {
 
 			var authenticate = function(credentials, callback) {
                 if (credentials) {
@@ -26,24 +19,24 @@ angular.module('jrdstart')
 
 			authenticate();
 
-			self.credentials = {};
-			self.login = function() {
-				authenticate(self.credentials, function(authenticated) {
+			$scope.credentials = {};
+			$scope.login = function() {
+				authenticate($scope.credentials, function(authenticated) {
 					if (authenticated) {
 						console.log("Login succeeded")
 						$location.path("/");
-						self.error = false;
+						$scope.error = false;
 						$rootScope.authenticated = true;
 					} else {
 						console.log("Login failed")
 						$location.path("/login");
-						self.error = true;
+						$scope.error = true;
 						$rootScope.authenticated = false;
 					}
 				})
 			};
 
-			self.logout = function() {
+			$scope.logout = function() {
 				$http.post('api/logout', {}).finally(function() {
 					$rootScope.authenticated = false;
 					$location.path("/");

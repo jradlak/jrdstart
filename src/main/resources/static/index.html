@@ -12,11 +12,11 @@
 </head>
 
 <body ng-app="jrdstart" ng-cloak class="ng-cloak">
-	<div ng-controller="login as nav" class="container">
+	<div ng-controller="LoginController as nav" class="container">
 		<ul class="nav nav-pills" role="tablist">
-			<li ui-sref="active:nav.tab('home')}"><a ui-sref="/">home</a></li>
-			<li ng-show="!authenticated" ng-class="{active:nav.tab('register')}"><a ui-sref="register">register</a></li>
-			<li ng-show="!authenticated" ng-class="{active:nav.tab('login')}"><a ui-sref="login">login</a></li>
+            <li ng-class="{active: $state.includes('home')}"><a ui-sref="/">home</a></li>
+			<li ng-show="!authenticated" ng-class="{active: $state.includes('register')}"><a ui-sref="register">register</a></li>
+			<li ng-show="!authenticated" ng-class="{active: $state.includes('login')}"><a ui-sref="login">login</a></li>
 			<li ng-show="authenticated"><a href="" ng-click="nav.logout()">logout</a></li>
 		</ul>
 	</div>
