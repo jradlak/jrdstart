@@ -12,14 +12,7 @@
 </head>
 
 <body ng-app="jrdstart" ng-cloak class="ng-cloak">
-	<div ng-controller="LoginController as nav" class="container">
-		<ul class="nav nav-pills" role="tablist">
-            <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">home</a></li>
-			<li ng-class="{active: $state.includes('register')}" ng-show="!authenticated"><a ui-sref="register">register</a></li>
-			<li ng-class="{active: $state.includes('login')}" ng-show="!authenticated"><a ui-sref="login">login</a></li>
-			<li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
-		</ul>
-	</div>
+    <div ui-view="navbar" ng-cloak=""></div>
 
     <div class="container">
         <div class="well" ui-view="content"></div>
@@ -49,8 +42,12 @@
     <script src="app/components/register/register.controller.js"></script>
     <script src="app/components/register/register.js"></script>
 
+    <script src="app/components/navbar/navbar.controller.js"></script>
+
     <script src="app/service/register.service.js"></script>
     <script src="app/service/auth.service.js"></script>
 	<script src="app/service/account.service.js"></script>
+    <script src="app/service/principal.service.js"></script>
+
 </body>
 </html>

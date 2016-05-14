@@ -4,7 +4,7 @@ angular.module('jrdstart')
     .config(function ($stateProvider) {
         $stateProvider
             .state('home', {
-                url: '/',
+                url: 'home',
                 views: {
                     'content@': {
                         templateUrl: '/app/components/home/home.html',

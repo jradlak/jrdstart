@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jrdstart')
-    .factory('Auth', function Auth($rootScope, Register, $http, localStorageService) {
+    .factory('Auth', function Auth($rootScope, Register, $http, localStorageService, Principal) {
         return {
             login: function(credentials) {
                  var data = 'username=' + encodeURIComponent(credentials.username) +
@@ -11,8 +11,36 @@ angular.module('jrdstart')
                          'Content-Type': 'application/x-www-form-urlencoded'
                      }
                  }).success(function (response) {
+                     Principal.identity(true);
                      return response;
                  });
+            },
+            authorize: function(force) {
+                return Principal.identity(force)
+                    .then(function() {
+                        var isAuthenticated = Principal.isAuthenticated();
+
+                        // an authenticated user can't access to login and register pages
+                        if (isAuthenticated) {
+                            $state.go('home');
+                        }
+
+                        if ($rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
+                            if (isAuthenticated) {
+                                // user is signed in but not authorized for desired state
+                                $state.go('accessdenied');
+                            }
+                            else {
+                                // user is not authenticated. stow the state they wanted before you
+                                // send them to the signin state, so you can return them when you're done
+                                $rootScope.previousStateName = $rootScope.toState;
+                                $rootScope.previousStateNameParams = $rootScope.toStateParams;
+
+                                // now, send them to the signin state so they can log in
+                                $state.go('login');
+                            }
+                        }
+                    });
             },
             createAccount: function(account, callback) {
                 var cb = callback || angular.noop;
@@ -24,6 +52,13 @@ angular.module('jrdstart')
                         //this.logout();
                         return cb(err);
                     }.bind(this)).$promise;
-            }
+            },
+            logout: function () {
+                //AuthServerProvider.logout();
+                Principal.authenticate(null);
+                // Reset state memory
+                $rootScope.previousStateName = undefined;
+                $rootScope.previousStateNameParams = undefined;
+            },
         }
     });
