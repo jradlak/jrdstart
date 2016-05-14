@@ -11,6 +11,7 @@ import java.util.UUID;
  * Created by jakub on 10.04.16.
  */
 @RestController
+@RequestMapping("/api")
 public class ResourceController {
     @RequestMapping("/resource")
     public Map<String, Object> resource() {
