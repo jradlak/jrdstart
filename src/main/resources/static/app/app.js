@@ -2,7 +2,6 @@
 
 angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
     .run(function($rootScope, $state, Auth, Principal) {
-
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
@@ -27,9 +26,9 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
             }
         });
     })
-    .config(function($httpProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('home');
         $stateProvider.state('site', {
             'abstract': true,
             views: {

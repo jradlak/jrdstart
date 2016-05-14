@@ -5,7 +5,7 @@ angular.module('jrdstart')
         var _identity,
             _authenticated = false;
 
-        return {autestApp
+        return {
             isIdentityResolved: function () {
                 return angular.isDefined(_identity);
             },

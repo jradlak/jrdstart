@@ -15,7 +15,7 @@ describe("jrdstart", function() {
     describe("Register Controller", function() {
         it('it sais <password do not match> if password\'s are not the same', function() {
             var $scope = {};
-            var controller = $controller('register', { $scope: $scope });
+            var controller = $controller('RegisterController', { $scope: $scope });
             $scope.registerAccount = {};
             $scope.registerAccount.password = "pass1";
             $scope.registerAccount.confirmPassword = "pass2";
@@ -27,7 +27,7 @@ describe("jrdstart", function() {
 
         it('it should register correct user', function() {
             var $scope = {};
-            var controller = $controller('register', { $scope: $scope });
+            var controller = $controller('RegisterController', { $scope: $scope });
 
             $scope.success = '';
             $httpBackend.expectPOST('api/register').respond(200);
@@ -39,7 +39,7 @@ describe("jrdstart", function() {
 
         it('it should not register user with existing login name', function() {
             var $scope = {};
-            var controller = $controller('register', { $scope: $scope });
+            var controller = $controller('RegisterController', { $scope: $scope });
 
             $scope.errorUserExists = '';
             $httpBackend.expectPOST('api/register').respond(400, 'login already in use');

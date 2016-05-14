@@ -26,11 +26,11 @@ describe("jrdstart", function() {
 
 	describe("Home Controller", function() {
 		it("says Hello Test when controller loads", function() {
-			$httpBackend.expectGET('/resource/').respond(200, {
+			$httpBackend.expectGET('/api/resource/').respond(200, {
 				id : 4321,
 				content : 'Hello Test'
 			});
-			var controller = $controller('home');
+			var controller = $controller('HomeController');
 			$httpBackend.flush();
 			expect(controller.greeting.content).toEqual('Hello Test');
 		});
