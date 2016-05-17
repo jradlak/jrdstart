@@ -46,7 +46,7 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
             }
         });
    
-	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-	$httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';
-    $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
-});
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';
+        $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
+    });
