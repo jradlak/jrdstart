@@ -4,7 +4,7 @@ angular.module('jrdstart')
     .config(function ($stateProvider) {
         $stateProvider
             .state('register', {
-                parent: 'site',
+                //parent: 'site',
                 url: 'register',
                 views: {
                     'content@': {
