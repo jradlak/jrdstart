@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
+angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 'ngResource' ])
     .run(function($rootScope, $state, Auth, Principal) {
-        console.log("run - coś pykło");
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
@@ -30,7 +30,7 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         $urlRouterProvider.otherwise('home');
 
-        /*
+
         $stateProvider.state('site', {
             'abstract': true,
             views: {
@@ -43,13 +43,11 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ngResource' ])
             resolve: {
                 authorize: ['Auth',
                     function (Auth) {
-
                         return Auth.authorize();
                     }
                 ]
             }
         });
-        */
    
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         $httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';

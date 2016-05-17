@@ -54,11 +54,13 @@ angular.module('jrdstart')
                     }.bind(this)).$promise;
             },
             logout: function () {
-                //AuthServerProvider.logout();
                 Principal.authenticate(null);
                 // Reset state memory
                 $rootScope.previousStateName = undefined;
                 $rootScope.previousStateNameParams = undefined;
+                $http.post('api/logout', {}).finally(function() {
+					$state.go("home");
+				});
             },
         }
     });
