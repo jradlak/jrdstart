@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jrdstart')
-    .factory('Auth', function Auth($rootScope, Register, $http, localStorageService, Principal) {
+    .factory('Auth', function Auth($rootScope, $state, Register, $http, localStorageService, Principal) {
         return {
             login: function(credentials) {
                  var data = 'username=' + encodeURIComponent(credentials.username) +
@@ -21,7 +21,7 @@ angular.module('jrdstart')
                         var isAuthenticated = Principal.isAuthenticated();
 
                         // an authenticated user can't access to login and register pages
-                        if (isAuthenticated) {
+                        if (isAuthenticated && !($rootScope.toState.name === 'home')) {
                             $state.go('home');
                         }
 

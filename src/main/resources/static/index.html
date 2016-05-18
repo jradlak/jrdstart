@@ -7,9 +7,9 @@
 </head>
 
 <body ng-app="jrdstart">
-    <!-- <div ui-view="navbar" ng-cloak=""></div> -->
 
-    <div ng-controller="NavbarController as nav" class="container">
+
+    <div ng-controller="NavbarController as nav" class="container" ng-cloak="">
         <ul class="nav nav-pills" role="tablist">
             <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">home</a></li>
             <li ng-class="{active: $state.includes('register')}" ng-show="!isAuthenticated()"><a ui-sref="register">register</a></li>
@@ -18,7 +18,10 @@
         </ul>
     </div>
 
+
     <div class="container">
+        <!-- <div ui-view="navbar" ng-cloak=""></div> -->
+
         <div class="well" ui-view="content"></div>
 
         <div class="footer">

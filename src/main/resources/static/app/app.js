@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 'ngCacheBuster', 'ngResource' ])
+angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 'ngResource' ])
     .run(function($rootScope, $state, Auth, Principal) {
 
-        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+        $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
@@ -26,11 +26,12 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 
               $rootScope.previousStateParams = fromParams;
             }
         });
-    })
-    .config(function($stateProvider, $urlRouterProvider, $httpProvider, httpRequestInterceptorCacheBusterProvider) {
 
-        //Cache everything except rest api requests
-        httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
+        $rootScope.$on('$routeChangeStart', function () {
+                    alert('refresh');
+                });
+    })
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         $urlRouterProvider.otherwise('home');
 
@@ -38,7 +39,7 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 
             'abstract': true,
             views: {
                 'navbar@': {
-                    templateUrl: 'app/components/navbar/navbar.html',
+                    templateUrl: '/app/components/navbar/navbar.html',
                     controller: 'NavbarController'
                 }
             }
@@ -55,4 +56,6 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         $httpProvider.defaults.xsrfCookieName = 'XSRF-TOKEN';
         $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
+
+        //Auth.authorize();
     });
