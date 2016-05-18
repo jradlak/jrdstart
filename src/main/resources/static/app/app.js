@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 'ngResource' ])
+angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 'ngCacheBuster', 'ngResource' ])
     .run(function($rootScope, $state, Auth, Principal) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
@@ -27,9 +27,12 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 
             }
         });
     })
-    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-        $urlRouterProvider.otherwise('home');
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider, httpRequestInterceptorCacheBusterProvider) {
 
+        //Cache everything except rest api requests
+        httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
+
+        $urlRouterProvider.otherwise('home');
 
         $stateProvider.state('site', {
             'abstract': true,
