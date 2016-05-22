@@ -26,15 +26,8 @@ angular.module('jrdstart', [ 'LocalStorageModule', 'ui.router', 'ui.bootstrap', 
               $rootScope.previousStateParams = fromParams;
             }
         });
-
-        $rootScope.$on('$routeChangeStart', function () {
-                    alert('refresh');
-                });
     })
     .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-
-        $urlRouterProvider.otherwise('home');
-
         $stateProvider.state('site', {
             'abstract': true,
             views: {

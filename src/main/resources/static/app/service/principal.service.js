@@ -17,11 +17,7 @@ angular.module('jrdstart')
                     return $q.when(false);
                 }
 
-                return this.identity().then(function(_id) {
-                    return _id.authorities && _id.authorities.indexOf(authority) !== -1;
-                }, function(err){
-                    return false;
-                });
+                return _identity.authorities && _identity.authorities.indexOf(authority) !== -1;
             },
             hasAnyAuthority: function (authorities) {
                 if (!_authenticated || !_identity || !_identity.authorities) {
