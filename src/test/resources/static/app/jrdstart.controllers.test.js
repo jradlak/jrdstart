@@ -30,9 +30,12 @@ describe("jrdstart", function() {
 				id : 4321,
 				content : 'Hello Test'
 			});
-			var controller = $controller('HomeController');
+
+            var $scope = {};
+			var controller = $controller('HomeController', { $scope: $scope });
 			$httpBackend.flush();
-			expect(controller.greeting.content).toEqual('Hello Test');
+			expect($scope.greeting.content).toEqual('Hello Test');
 		});
 	});
+
 });
